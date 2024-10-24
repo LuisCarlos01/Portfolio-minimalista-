@@ -442,6 +442,11 @@ nav .navlinks li a:hover {
     transform: translateY(0); /* Move o texto para a posição original */
 }
 
+/* CSS (em style.css) */
+.clickable {
+    cursor: pointer;
+}
+
 /* Spinner */
 @keyframes spinner {
     0% { transform: rotate(0deg); }
