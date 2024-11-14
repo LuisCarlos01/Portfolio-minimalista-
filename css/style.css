@@ -534,3 +534,12 @@ footer {
         margin: 10px 0;
     }
 }
+/* Para suavizar a transição */
+.contact-section {
+    display: none; /* A seção de contato começa oculta */
+    transition: all 0.3s ease;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #1a1a1a;
+    color: #fff;
+}

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Luís Carlos</title><!--TITULO APARECE NA ABA EM CIMA E NAO NA PAGINA-->
+    <title>Portfolio Luís Carlos</title>
     <link rel="stylesheet" href="css/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -148,7 +148,7 @@
             height: 150px;
         }
         button {
-            background-color: #ff9800;
+            background-color: #9b59b6;
             border: none;
             color: #fff;
             padding: 15px;
@@ -156,7 +156,7 @@
             border-radius: 5px;
         }
         button:hover {
-            background-color: #e68900;
+            background-color: #9b59b6;
         }
         .contact-info {
             flex-basis: 30%;
@@ -165,7 +165,7 @@
             margin-bottom: 10px;
         }
         .contact-info a {
-            color: #ff9800;
+            color: #9b59b6;
             text-decoration: none;
         }
         .contact-info a:hover {
@@ -182,26 +182,25 @@
             <div class="wrapper">
                 <header>
                     <!-- HTML -->
-<div class="logo clickable" onclick="reloadPage()">
-    <span class="copyright">©</span>
-    <span class="logo-text">Code by Luís Carlos</span>
-</div>
+                    <div class="logo clickable" onclick="reloadPage()">
+                        <span class="copyright">©</span>
+                        <span class="logo-text">Code by Luís Carlos</span>
+                    </div>
                     <nav>
                         <div class="togglebtn">
                             <span></span><span></span><span></span>
                         </div>
                         <ul class="navlinks">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
                             <li><a href="#">Resume</a></li>
-                            <li><a href="skills" class="habilidades-btn">Skills</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#skills" class="habilidades-btn">Skills</a></li>
+                            <li><a href="#contact-section">Contact</a></li> <!-- Removido o id aqui -->
                             <li><a href="#">Portfolio</a></li>
                         </ul>
                     </nav>
                 </header>
                 <div class="container">
-                    <div class="hero-pic"><img src="pictures/handsome.png" alt="perfil" /></div>
+                    <div class="hero-pic"><img src="#" alt="perfil" /></div>
                     <div class="hero-text">
                         <h5>Hi I'm <span class="input">Freelancer</span></h5>
                         <h1>Luís Carlos</h1>
@@ -210,7 +209,7 @@
                         </p>
                         <div class="btn-group">
                             <a href="#" class="btn active">Download CV</a>
-                            <a href="#" class="btn">Contact</a>
+                            <a href="#contact-section" class="btn">Contact</a> <!-- Removido o id aqui -->
                         </div>
                         <div class="social">
                             <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard"><i class="fa-brands fa-linkedin"></i></a>
@@ -257,12 +256,17 @@
                     <i class="fa-solid fa-file-code"></i>
                     <h3>Tailwind</h3>
                     <p class="skill-description">Framework CSS para design responsivo.</p>
+                </div>    
+                <div class="skill">
+                    <i class="fa-brands fa-sass"></i>
+                    <h3>Sass</h3>
+                    <p class="skill-description">#</p>
                 </div>
             </div>
         </div>
 
         <!-- Seção de Contato -->
-        <div class="contact-section">
+        <div class="contact-section" id="contact-section">
             <div class="contact-form">
                 <h2>Entre em Contato</h2>
                 <form action="#" method="POST">

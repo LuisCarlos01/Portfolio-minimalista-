@@ -187,3 +187,30 @@ const typed = new Typed(".input", {
     loop: true,
 });
 
+// Função para alternar a visibilidade da seção de contato
+document.addEventListener('DOMContentLoaded', function() {
+    const contactButton = document.querySelector('a[href="#contact-section"]'); // Link de contato
+    const contactSection = document.querySelector('#contact-section'); // Seção de contato
+
+    // Verifica se o link e a seção de contato existem
+    if (!contactButton || !contactSection) {
+        console.error('Elemento de contato não encontrado');
+        return; // Se não encontrar os elementos, evita o erro
+    }
+
+    // Certifique-se de que a seção de contato está inicialmente oculta
+    contactSection.style.display = 'none';
+
+    // Evento de clique no botão "Contact"
+    contactButton.addEventListener('click', function(event) {
+        // Não chamamos preventDefault() para permitir a navegação
+        // event.preventDefault(); // Remover esta linha
+
+        // Exibe a seção de contato com animação
+        contactSection.style.display = 'flex'; // Torna a seção visível
+        gsap.fromTo(contactSection, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }); // Animação de entrada
+
+        // Rolagem suave até a seção de contato
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+    });
+});
