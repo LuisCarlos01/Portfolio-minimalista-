@@ -117,7 +117,9 @@ skills.forEach(skill => {
             skillInfo.innerHTML = skillDescription; // Atualiza o conteúdo da skill
             console.log('Mostrando modal para a habilidade:', skillDescription);
             previewModal.style.display = 'flex'; // Exibe o modal
-            previewModal.style.opacity = '1'; // Torna visível
+            previewModal.style.opacity = '0'; // Inicia invisível
+            previewModal.style.transform = 'scale(0.9)'; // Começa com uma escala menor
+            gsap.to(previewModal, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }); // Transição suave de fade-in e zoom-in
             isPreviewVisible = true; // Marca como visível
         }
     });
@@ -126,11 +128,10 @@ skills.forEach(skill => {
         // Oculte o modal apenas se ele estiver visível e se o mouse não estiver sobre o modal
         if (isPreviewVisible && !previewModal.matches(':hover')) {
             console.log('Ocultando modal da habilidade.');
-            previewModal.style.opacity = '0'; // Torna invisível
-            setTimeout(() => {
+            gsap.to(previewModal, { opacity: 0, scale: 0.9, duration: 0.4, ease: 'power2.in', onComplete: () => {
                 previewModal.style.display = 'none'; // Oculta o modal após a animação
                 isPreviewVisible = false; // Marca como invisível
-            }, 500); // Tempo para coincidir com a transição
+            }});
         }
     });
 });
@@ -138,11 +139,10 @@ skills.forEach(skill => {
 // Fechar o modal ao clicar no botão
 closePreviewBtn.addEventListener('click', () => {
     console.log('Fechando modal ao clicar no botão.');
-    previewModal.style.opacity = '0'; // Torna invisível
-    setTimeout(() => {
+    gsap.to(previewModal, { opacity: 0, scale: 0.9, duration: 0.4, ease: 'power2.in', onComplete: () => {
         previewModal.style.display = 'none'; // Oculta o modal
         isPreviewVisible = false; // Marca como invisível
-    }, 500);
+    }});
 });
 
 // Toggle para o menu
