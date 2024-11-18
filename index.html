@@ -5,187 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Luís Carlos</title>
-    <link rel="stylesheet" href="css/style.css" />
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    
+    <!-- Estilos principais -->
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <!-- Estilos de Preloader -->
+    <link rel="stylesheet" href="css/preloader.css" />
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    
+    <!-- GSAP e Typed.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
-    <style>
-        /* Estilos para o Preloader */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: "Poppins", sans-serif;
-        }
-        body, html {
-            height: 100%;
-        }
-        .preloader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #000;
-            color: #fff;
-            font-size: 2rem;
-        }
-        .content {
-            display: none;
-            opacity: 0;
-        }
-        .skills-section {
-            display: none;
-        }
-        .skill-description {
-            display: none;
-        }
-
-        /* Estilo do Modal */
-        .skill-preview {
-            display: none; /* Oculta o modal por padrão */
-            position: fixed; /* Fixa o modal na tela */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com transparência */
-            color: white;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; /* Para aparecer acima de outros elementos */
-            transition: opacity 0.5s; /* Suaviza a transição de opacidade */
-        }
-
-        /* Estilo do conteúdo do modal */
-        .preview-content {
-            background: #444;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .close-preview {
-            cursor: pointer;
-            margin-top: 20px;
-            color: #9b59b6; /* Roxo suave */
-        }
-
-        /* Estilo do footer */
-        footer {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out; /*para uma transiçao suave*/
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top:0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .footer-logo {
-            font-size: 1.2rem;
-        }
-        .footer-links a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 1rem;
-        }
-        .footer-social a {
-            color: white;
-            margin: 0 10px;
-            font-size: 1.5rem;
-        }
-
-        /* Estilos da seção de contato */
-        .contact-section {
-            display: flex;
-            justify-content: space-between;
-            padding: 50px;
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-        .contact-header h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: 30px;
-        }
-        .contact-form {
-            flex-basis: 50%;
-        }
-        .contact-form form {
-            display: grid;
-            gap: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            background-color: #333;
-            border: none;
-            color: #fff;
-            border-radius: 5px;
-        }
-        .form-group textarea {
-            height: 150px;
-        }
-        button {
-            background-color: #9b59b6;
-            border: none;
-            color: #fff;
-            padding: 15px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #9b59b6;
-        }
-        .contact-info {
-            flex-basis: 30%;
-        }
-        .contact-info p {
-            margin-bottom: 10px;
-        }
-        .contact-info a {
-            color: #9b59b6;
-            text-decoration: none;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
+    <!-- Preloader -->
     <div class="preloader" id="preloader">
         <h1>•olá</h1>
     </div>
+
+    <!-- Conteúdo principal -->
     <div class="content" id="content">
+        
+        <!-- Seção de Cabeçalho (Hero Section) -->
         <div class="hero-header">
             <div class="wrapper">
                 <header>
-                    <!-- HTML -->
+                    <!-- Logo -->
                     <div class="logo clickable" onclick="reloadPage()">
                         <span class="copyright">©</span>
                         <span class="logo-text">Code by Luís Carlos</span>
                     </div>
+
+                    <!-- Navegação -->
                     <nav>
                         <div class="togglebtn">
                             <span></span><span></span><span></span>
@@ -195,12 +51,16 @@
                             <li><a href="#">Resume</a></li>
                             <li><a href="#skills" class="habilidades-btn">Skills</a></li>
                             <li><a href="#contact-section">Contact</a></li>
-                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
                         </ul>
                     </nav>
                 </header>
+
+                <!-- Conteúdo da Hero Section -->
                 <div class="container">
-                    <div class="hero-pic"><img src="#" alt="perfil" /></div>
+                    <div class="hero-pic">
+                        <img src="#" alt="perfil" />
+                    </div>
                     <div class="hero-text">
                         <h5>Hi I'm <span class="input">Freelancer</span></h5>
                         <h1>Luís Carlos</h1>
@@ -212,18 +72,24 @@
                             <a href="#contact-section" class="btn">Contact</a>
                         </div>
                         <div class="social">
-                            <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="https://github.com/LuisCarlos01"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/LuisCarlos01" aria-label="GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Botão Circular sobre o conteúdo -->
         <div class="circlebutton" id="aboutButton">
             <span>About me</span>
         </div>
 
+        <!-- Seção de Habilidades -->
         <div id="skills" class="skills-section">
             <h2>Habilidades</h2>
             <div class="skills-container">
@@ -251,43 +117,80 @@
                     <i class="fa-solid fa-file-code"></i>
                     <h3>Tailwind</h3>
                     <p class="skill-description">Framework CSS para design responsivo.</p>
-                </div>    
+                </div>
                 <div class="skill">
                     <i class="fa-brands fa-sass"></i>
                     <h3>Sass</h3>
-                    <p class="skill-description">Sass é uma extensão do CSS que facilita a escrita de estilos mais organizados e poderosos, com recursos como variáveis, aninhamento e funções.</p>
+                    <p class="skill-description">Sass é uma extensão do CSS que facilita a escrita de estilos mais organizados e poderosos.</p>
                 </div>
                 <div class="skill">
                     <i class="fa-brands fa-node"></i>
                     <h3>Node</h3>
-                    <p class="skill-description">É uma framework que permite rodar JavaScript no servidor, permitindo criar aplicativos rápidos e escaláveis.</p>
+                    <p class="skill-description">Framework para rodar JavaScript no servidor, criando aplicativos rápidos e escaláveis.</p>
                 </div>
                 <div class="skill">
                     <i class="fa-brands fa-react"></i>
                     <h3>React</h3>
-                    <p class="skill-description">React é uma biblioteca JavaScript para construir interfaces de usuário interativas e dinâmicas, usando componentes reutilizáveis.</p>
+                    <p class="skill-description">Biblioteca JavaScript para construir interfaces de usuário interativas.</p>
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-git-alt"></i>
+                    <h3>Git</h3>
+                    <p class="skill-description">Controle de versão de projetos e arquivos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção de Portfolio -->
+        <div id="portfolio" class="portfolio-section">
+            <h2>Meu Portfolio</h2>
+            <p class="portfolio-description">Esses projetos ainda estão em desenvolvimento. Fique atento!</p>
+            <div class="portfolio-container">
+                <!-- Projeto 1 (placeholder) -->
+                <div class="portfolio-card">
+                    <div class="portfolio-thumbnail loading" id="project1">
+                        <div class="loading-message">Em breve...</div>
                     </div>
-                    <div class="skill">
-                        <i class="fa-brands fa-git-alt"></i>
-                        <h3>Git</h3>
-                        <p class="skill-description">Controle de versão de projetos e arquivos.</p>
+                    <div class="portfolio-info">
+                        <h3>Projeto 1</h3>
+                        <p>Descrição do projeto 1. Aguarde, estamos trabalhando nisso!</p>
+                    </div>
+                </div>
+                <!-- Projeto 2 (placeholder) -->
+                <div class="portfolio-card">
+                    <div class="portfolio-thumbnail loading" id="project2">
+                        <div class="loading-message">Em breve...</div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Projeto 2</h3>
+                        <p>Descrição do projeto 2. Fique ligado para mais detalhes!</p>
+                    </div>
+                </div>
+                <!-- Projeto 3 (placeholder) -->
+                <div class="portfolio-card">
+                    <div class="portfolio-thumbnail loading" id="project3">
+                        <div class="loading-message">Em breve...</div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Projeto 3</h3>
+                        <p>Descrição do projeto 3. Estamos finalizando os últimos detalhes!</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Seção de Contato -->
-        <div class="contact-section" id="contact-section">
+        <section id="contact-section" class="contact-section">
             <div class="contact-form">
                 <h2>Entre em Contato</h2>
                 <form action="#" method="POST">
                     <div class="form-group">
                         <label for="name">Seu Nome</label>
-                        <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+                        <input type="text" id="name" name="name" placeholder="Digite seu nome" required />
                     </div>
                     <div class="form-group">
                         <label for="email">Seu Email</label>
-                        <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                        <input type="email" id="email" name="email" placeholder="Digite seu email" required />
                     </div>
                     <div class="form-group">
                         <label for="message">Sua Mensagem</label>
@@ -296,14 +199,16 @@
                     <button type="submit">Enviar Mensagem</button>
                 </form>
             </div>
+
             <div class="contact-info">
                 <h2>Meus Contatos</h2>
-                <p>Email: <a href="mailto:luiz@example.com">luizcarlosvitorianoneto@gmail.com</a></p>
+                <p>Email: <a href="mailto:luizcarlosvitorianoneto@gmail.com">luizcarlosvitorianoneto@gmail.com</a></p>
                 <p>Telefone: +55 (35) 99708-0310</p>
                 <p>LinkedIn: <a href="https://linkedin.com/in/luiz-carlos">linkedin.com/in/luiz-carlos</a></p>
                 <p>GitHub: <a href="https://github.com/LuisCarlos01">github.com/LuisCarlos01</a></p>
             </div>
-        </div>
+        </section>
+
     </div>
 
     <!-- Footer -->
@@ -320,12 +225,17 @@
                 <a href="#">Contact</a>
             </div>
             <div class="footer-social">
-                <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/LuisCarlos01"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/LuisCarlos01" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
             </div>
         </div>
     </footer>
 
+    <!-- Script JS -->
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -534,12 +534,135 @@ footer {
         margin: 10px 0;
     }
 }
-/* Para suavizar a transição */
+/* Suaviza a rolagem */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Seção de contato */
 .contact-section {
-    display: none; /* A seção de contato começa oculta */
-    transition: all 0.3s ease;
-    justify-content: space-between;
+    display: block; /* Seção visível por padrão */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.5s ease; /* Transição suave */
     padding: 50px;
     background-color: #1a1a1a;
     color: #fff;
+}
+
+/* Quando a seção é acessada via ancoragem (target) */
+#contact-section:target {
+    opacity: 1; /* Torna a seção visível */
+}
+
+/* Estilos da seção de Portfolio */
+#portfolio {
+    display: none;
+    transition: all 0.5s ease-in-out;
+}
+.portfolio-section {
+    padding: 60px 20px; /* Ajusta o padding para adicionar mais espaçamento */
+    background-color: #222; /* Fundo escuro, em harmonia com a seção Skills */
+    color: #e5e5e5; /* Cor do texto clara para contraste com o fundo escuro */
+    text-align: center;
+}
+
+.portfolio-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #e5e5e5; /* Texto em cor clara */
+    font-weight: 400;
+}
+
+.portfolio-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.portfolio-card {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px); /* Efeito de hover com leve elevação */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra mais intensa ao passar o mouse */
+}
+
+.portfolio-thumbnail {
+    width: 100%;
+    height: 200px;
+    background-color: var(--gray-light); /* Cor de fundo da imagem do projeto */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gray-dark); /* Linha de separação */
+}
+
+.portfolio-thumbnail.loading {
+    background-color: var(--purple-soft); /* Cor de fundo enquanto carrega */
+    animation: pulse 2s infinite ease-in-out; /* Animação de carregamento */
+}
+
+.loading-message {
+    font-size: 1.5rem;
+    color: #fff; /* Texto branco para destacar sobre o fundo roxo */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: text-blink 1.5s infinite ease-in-out; /* Efeito de piscar */
+}
+
+.portfolio-info {
+    padding: 20px;
+    font-size: 1rem;
+    color: #e5e5e5; /* Texto em cor clara */
+}
+
+.portfolio-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--purple-soft); /* Título em roxo suave */
+    font-weight: 500;
+}
+
+.portfolio-info p {
+    color: #e5e5e5; /* Descrição em cor clara */
+    font-size: 1rem;
+}
+
+/* Efeito de Carregamento */
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #ccc;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}
+
+/* Efeito de "Blink" no texto "Em breve..." */
+@keyframes text-blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }

@@ -116,10 +116,18 @@ skills.forEach(skill => {
             const skillDescription = skill.querySelector('.skill-description').innerHTML;
             skillInfo.innerHTML = skillDescription; // Atualiza o conteúdo da skill
             console.log('Mostrando modal para a habilidade:', skillDescription);
+            
             previewModal.style.display = 'flex'; // Exibe o modal
             previewModal.style.opacity = '0'; // Inicia invisível
-            previewModal.style.transform = 'scale(0.9)'; // Começa com uma escala menor
-            gsap.to(previewModal, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }); // Transição suave de fade-in e zoom-in
+            previewModal.style.transform = 'scale(1)'; // Mantém a escala inalterada
+            
+            // Transição suave de entrada (fade-in)
+            gsap.to(previewModal, { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 0.3, // Duração mais curta para uma transição mais rápida
+                ease: 'power2.inOut' // Usando easing mais sutil
+            });
             isPreviewVisible = true; // Marca como visível
         }
     });
@@ -128,10 +136,18 @@ skills.forEach(skill => {
         // Oculte o modal apenas se ele estiver visível e se o mouse não estiver sobre o modal
         if (isPreviewVisible && !previewModal.matches(':hover')) {
             console.log('Ocultando modal da habilidade.');
-            gsap.to(previewModal, { opacity: 0, scale: 0.9, duration: 0.4, ease: 'power2.in', onComplete: () => {
-                previewModal.style.display = 'none'; // Oculta o modal após a animação
-                isPreviewVisible = false; // Marca como invisível
-            }});
+
+            // Transição suave de saída (fade-out)
+            gsap.to(previewModal, { 
+                opacity: 0, 
+                scale: 1, // Mantém a escala como estava
+                duration: 0.3, // Duração mais curta para uma transição mais rápida
+                ease: 'power2.inOut', // Usando easing mais sutil
+                onComplete: () => {
+                    previewModal.style.display = 'none'; // Oculta o modal após a animação
+                    isPreviewVisible = false; // Marca como invisível
+                }
+            });
         }
     });
 });
@@ -139,10 +155,18 @@ skills.forEach(skill => {
 // Fechar o modal ao clicar no botão
 closePreviewBtn.addEventListener('click', () => {
     console.log('Fechando modal ao clicar no botão.');
-    gsap.to(previewModal, { opacity: 0, scale: 0.9, duration: 0.4, ease: 'power2.in', onComplete: () => {
-        previewModal.style.display = 'none'; // Oculta o modal
-        isPreviewVisible = false; // Marca como invisível
-    }});
+
+    // Transição suave de fechamento (fade-out)
+    gsap.to(previewModal, { 
+        opacity: 0, 
+        scale: 1, // Mantém a escala como estava
+        duration: 0.3, // Duração mais curta para uma transição mais rápida
+        ease: 'power2.inOut', // Usando easing mais sutil
+        onComplete: () => {
+            previewModal.style.display = 'none'; // Oculta o modal
+            isPreviewVisible = false; // Marca como invisível
+        }
+    });
 });
 
 // Toggle para o menu
@@ -212,5 +236,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Rolagem suave até a seção de contato
         contactSection.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+// Função para alternar a visibilidade da seção Portfolio
+document.addEventListener("DOMContentLoaded", function () {
+    const portfolioLink = document.querySelector('a[href="#portfolio"]'); // Encontra o link "Portfolio"
+    const portfolioSection = document.getElementById("portfolio"); // Encontra a seção "Portfolio"
+
+    // Adiciona o evento de clique ao link
+    portfolioLink.addEventListener("click", function (event) {
+        event.preventDefault(); // Impede o comportamento padrão de navegação
+
+        // Verifica se a seção está visível
+        if (portfolioSection.style.display === "none" || portfolioSection.style.display === "") {
+            portfolioSection.style.display = "block"; // Exibe a seção
+            // Rolagem suave até a seção "Portfolio"
+            portfolioSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            portfolioSection.style.display = "none"; // Oculta a seção
+        }
     });
 });
