@@ -13,9 +13,10 @@ body, html {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #000;
+    background: linear-gradient(to right, #000, #333); /* Gradiente para o fundo do preloader */
     color: #fff;
-    font-size: 2rem;
+    font-size: 2.5rem; /* Aumenta o tamanho da fonte */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra para o texto */
 }
 .content {
     display: none;
@@ -62,15 +63,16 @@ body, html {
 footer {
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out; /*para uma transiçao suave*/
-    background-color: #333;
-    color: white;
+    transition: opacity 0.5s ease-in-out; /* Suaviza a transição de opacidade */
+    background-color: var(--gray-dark); /* Fundo cinza escuro */
+    color: var(--gray-light); /* Texto cinza claro */
     text-align: center;
     padding: 20px 0;
     margin-top:0;
     position: relative;
     bottom: 0;
     width: 100%;
+    border-top: 2px solid var(--purple-soft); /* Linha superior roxa */
 }
 .footer-container {
     display: flex;

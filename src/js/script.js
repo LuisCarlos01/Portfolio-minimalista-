@@ -43,9 +43,9 @@ habilidadesBtn.addEventListener('click', function(event) {
     console.log('Botão de habilidades clicado.');
     if (habilidadesSection.style.display === 'none' || habilidadesSection.style.display === '') {
         habilidadesSection.style.display = 'block';
-        gsap.fromTo(habilidadesSection, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+        gsap.fromTo(habilidadesSection, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
     } else {
-        gsap.to(habilidadesSection, { opacity: 0, y: 20, duration: 0.4, onComplete: () => {
+        gsap.to(habilidadesSection, { opacity: 0, y: 20, duration: 0.6, ease: "power2.in", onComplete: () => {
             habilidadesSection.style.display = 'none';
         }});
     }
@@ -169,13 +169,13 @@ closePreviewBtn.addEventListener('click', () => {
     });
 });
 
-// Toggle para o menu
+// Botão de alternância
 const togglebtn = document.querySelector(".togglebtn");
 const nav = document.querySelector(".navlinks");
 
 togglebtn.addEventListener("click", function () {
-    this.classList.toggle("click");
-    nav.classList.toggle("open");
+    this.classList.toggle("active"); // Adiciona/remover a classe ativa
+    nav.classList.toggle("open"); // Adiciona/remover a classe open
     if (nav.classList.contains("open")) {
         console.log('Menu aberto.');
         nav.style.display = 'block';
@@ -257,3 +257,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+// Melhorar a animação do preloader
+gsap.to("#preloader h1", {
+    scale: 1.2,
+    duration: 0.5,
+    yoyo: true,
+    repeat: -1,
+    ease: "power1.inOut"
+});
+
+// Função para verificar a visibilidade da seção Hero e mostrar/ocultar o botão "About Me"
+function checkHeroVisibility() {
+    const heroSection = document.querySelector('.hero-header');
+    const aboutButton = document.getElementById('aboutButton');
+    const rect = heroSection.getBoundingClientRect();
+    const isVisible = rect.bottom > 0 && rect.top < window.innerHeight;
+
+    // Mostrar ou ocultar o botão com base na visibilidade da seção Hero
+    if (!isVisible) {
+        aboutButton.style.display = 'flex'; // Torna o botão visível
+    } else {
+        aboutButton.style.display = 'none'; // Oculta o botão
+    }
+}
+
+// Adiciona o evento de rolagem e redimensionamento
+window.addEventListener('scroll', checkHeroVisibility);
+window.addEventListener('resize', checkHeroVisibility);
+
+// Chama a função ao carregar a página
+document.addEventListener('DOMContentLoaded', checkHeroVisibility);
