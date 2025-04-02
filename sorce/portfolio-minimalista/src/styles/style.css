@@ -11,6 +11,14 @@
   --purple-soft: #9b59b6;
   --gray-light: #b3b3b3;
   --gray-dark: #333;
+  --accent-color: #9b59b6;
+  --accent-hover: #8e44ad;
+  --border-color: rgba(155, 89, 182, 0.3);
+  --card-bg: rgba(0, 0, 0, 0.2);
+  --input-bg: rgba(30, 30, 30, 0.8);
+  --text-color: white;
+  --footer-bg: #333;
+  --footer-text: #b3b3b3;
 }
 
 html {
@@ -24,7 +32,8 @@ html {
 
 body {
   overflow-x: hidden;
-  background-color: #f4f4f4; /* Fundo claro minimalista */
+  background-color: var(--gray-dark);
+  color: var(--gray-light);
 }
 
 /* Estilo do Cabeçalho Principal */
@@ -48,11 +57,13 @@ body {
 
 /* Estilo do Cabeçalho e Navegação */
 header {
-  padding: 40px 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  padding: 1rem 2rem;
+  background-color: var(--gray-dark);
+  color: var(--gray-light);
+  border-bottom: 2px solid var(--purple-soft);
 }
 
 .logo {
@@ -96,69 +107,81 @@ header {
 }
 
 /* Estilo do botão de alternância */
-nav .togglebtn {
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  top: 45px;
-  right: 3%;
-  z-index: 5;
-  cursor: pointer;
-  display: none; /* Oculta por padrão */
-  flex-direction: column; /* Alinha as barras em coluna */
-  justify-content: space-around; /* Espaçamento entre as barras */
-  transition: transform 0.3s ease; /* Transição suave para transformação */
+.togglebtn {
+  display: none;
 }
 
-nav .togglebtn .bar {
-  height: 3px;
-  width: 100%;
-  background-color: var(--purple-soft); /* Cor das barras */
-  transition: all 0.3s ease; /* Transição suave */
-}
-
-/* Estilo para quando o botão é clicado */
-nav .togglebtn.active .bar:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px); /* Rotaciona a primeira barra */
-}
-
-nav .togglebtn.active .bar:nth-child(2) {
-  opacity: 0; /* Oculta a segunda barra */
-}
-
-nav .togglebtn.active .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px); /* Rotaciona a terceira barra */
-}
-
-/* Efeito de hover no botão de alternância */
-nav .togglebtn:hover {
-  transform: scale(1.1); /* Aumenta ligeiramente o tamanho ao passar o mouse */
-}
-
-/* Exibir o botão de alternância em telas menores */
-@media (max-width: 768px) {
-  nav .togglebtn {
-    display: flex; /* Exibe o botão em telas menores */
+@media screen and (max-width: 768px) {
+  .togglebtn {
+    display: block;
+    position: relative;
+    z-index: 1000;
+    cursor: pointer;
   }
 
-  nav .navlinks {
-    display: none; /* Oculta as opções de navegação por padrão */
-    position: absolute; /* Posiciona o menu */
-    top: 110px; /* Ajusta a posição */
-    right: -100%; /* Oculta fora da tela */
-    bottom: 0;
-    width: 60%;
+  .togglebtn .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--gray-light);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .togglebtn.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .togglebtn.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .togglebtn.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .navlinks {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 70%;
     height: 100vh;
-    background-color: var(--gray-dark); /* Fundo cinza escuro */
-    z-index: 3;
-    box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
-    transition: right 0.5s ease; /* Transição suave para a posição */
-    padding: 25px 0;
+    background-color: var(--gray-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 900;
+    transition: right 0.5s ease;
+    display: none;
   }
 
-  nav .navlinks.open {
-    right: 0; /* Mostra o menu ao abrir */
+  .navlinks.open {
+    right: 0;
+    display: flex;
   }
+
+  .navlinks li {
+    margin: 1.5rem 0;
+  }
+}
+
+.navlinks {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navlinks a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--purple-soft);
 }
 
 /* Botão sobre mim */
@@ -200,32 +223,6 @@ nav .togglebtn span {
   height: 3px;
   transition: 0.3s;
   transition-property: transform, opacity;
-}
-
-nav .navlinks {
-  list-style-type: none;
-}
-
-nav .navlinks li {
-  margin: 15px 0; /* Espaçamento entre os links */
-}
-
-nav .navlinks li a {
-  color: var(--gray-light); /* Cinza claro */
-  padding: 10px 15px; /* Adiciona padding para aumentar a área clicável */
-  border-radius: 5px; /* Bordas arredondadas */
-  transition: background-color 0.3s, color 0.3s; /* Transições suaves */
-}
-
-nav .navlinks li a:hover {
-  background-color: var(--purple-soft); /* Fundo roxo ao passar o mouse */
-  color: #fff; /* Texto branco ao passar o mouse */
-  transform: scale(1.05); /* Aumenta ligeiramente o tamanho ao passar o mouse */
-}
-
-nav .navlinks li a:focus {
-  outline: none; /* Remove o contorno padrão */
-  box-shadow: 0 0 5px var(--purple-soft); /* Adiciona uma sombra ao foco */
 }
 
 /* Estilo da Foto perfil */
@@ -272,12 +269,14 @@ nav .navlinks li a:focus {
 }
 
 .hero-text h1 {
-  color: var(--purple-soft); /* Título em roxo suave */
+  color: var(--purple-soft);
+  text-shadow: 0 2px 10px rgba(155, 89, 182, 0.5);
   font-size: 3rem;
 }
 
 .hero-text p {
-  color: var(--gray-light); /* Texto em cinza claro */
+  color: white;
+  opacity: 0.9;
 }
 
 /* Estilo do grupo de botões */
@@ -474,14 +473,15 @@ nav .navlinks li a:focus {
 /* Estilo da seção de habilidades */
 .skills-section {
   padding: 60px 20px;
-  background-color: #222;
-  color: #e5e5e5;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
   text-align: center;
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   margin: 30px auto;
   max-width: 1280px;
+  border: 1px solid rgba(155, 89, 182, 0.3);
 }
 
 .skills-container {
@@ -582,7 +582,10 @@ nav .navlinks li a:focus {
 }
 
 .content {
-  display: none; /* Oculta o conteúdo inicialmente */
+  display: block;
+  flex: 1;
+  min-height: calc(100vh - 60px); /* Altura da tela menos a altura do footer */
+  position: relative;
 }
 
 /* Estilos para o Logo e Copyright */
@@ -668,22 +671,13 @@ nav .navlinks li a:focus {
   opacity: 1;
 }
 
-/* Estilo do footer */
+/* Footer */
 footer {
-  display: flex; /* Flexbox para organizar os itens */
-  justify-content: space-between; /* Espaçamento entre os itens */
-  align-items: center; /* Alinha verticalmente */
-  padding: 10px; /* Reduz o padding do footer */
-  background-color: var(--gray-dark); /* Fundo cinza escuro */
-  color: var(--gray-light); /* Texto cinza claro */
-  position: relative; /* Para posicionamento do efeito */
-  margin-top: 50px; /* Espaçamento acima do footer */
-  border-top: 2px solid var(--purple-soft); /* Linha superior roxa */
-  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-}
-
-footer:hover {
-  background-color: #333; /* Escurece o fundo ao passar o mouse */
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 4rem;
 }
 
 .footer-container {
@@ -693,55 +687,55 @@ footer:hover {
   flex-wrap: wrap;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 10px; /* Reduz o padding do container do footer */
+  padding: 10px;
 }
 
 .footer-logo {
-  font-size: 1.5rem; /* Aumenta o tamanho da fonte */
-  color: var(--purple-soft); /* Cor do texto do logo */
-  transition: transform 0.3s, color 0.3s; /* Transições suaves */
+  font-size: 1.5rem;
+  color: var(--purple-soft);
+  transition: transform 0.3s, color 0.3s;
 }
 
 .footer-logo:hover {
-  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
-  color: #fff; /* Muda a cor do texto ao passar o mouse */
+  transform: scale(1.1);
+  color: #fff;
 }
 
 .footer-links a {
-  color: var(--gray-light); /* Cinza claro */
+  color: white;
+  opacity: 0.9;
   margin: 0 15px;
-  transition: color 0.3s; /* Transição suave para a cor */
+  transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: var(--purple-soft); /* Roxo suave ao passar o mouse */
-  text-decoration: underline; /* Sublinhado ao passar o mouse */
+  color: var(--purple-soft);
+  text-decoration: underline;
 }
 
 .footer-social a {
   margin: 0 10px;
-  color: var(--gray-light); /* Cinza claro */
+  color: var(--gray-light);
   font-size: 20px;
-  transition: color 0.3s; /* Transição suave para a cor */
+  transition: color 0.3s;
 }
 
 .footer-social a:hover {
-  color: var(--purple-soft); /* Roxo suave ao passar o mouse */
+  color: var(--purple-soft);
 }
 
-/* Efeito para a fonte "© 2024 Luís Carlos" */
 .footer-logo span {
-  font-family: "Dancing Script", cursive; /* Fonte cursiva para o copyright */
-  font-size: 1.5rem; /* Tamanho da fonte */
-  transition: transform 0.3s, text-shadow 0.3s; /* Transições suaves */
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  transition: transform 0.3s, text-shadow 0.3s;
 }
 
 .footer-logo span:hover {
-  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Sombra ao passar o mouse */
+  transform: scale(1.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
-/* Responsividade */
+/* Responsividade do footer */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -751,428 +745,9 @@ footer:hover {
     margin: 10px 0;
   }
 }
-/* Suaviza a rolagem */
-html {
-  scroll-behavior: smooth;
-}
 
-/* Estilos da seção de Contato */
-.contact-section {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px;
-  background-color: #1a1a1a;
-  color: #fff;
-  border-radius: 10px; /* Bordas arredondadas */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
-}
-
-.contact-form {
-  flex-basis: 60%; /* Ajusta a largura do formulário */
-}
-
-.contact-form h2 {
-  font-size: 2rem; /* Tamanho do título */
-  margin-bottom: 20px; /* Espaçamento abaixo do título */
-}
-
-.contact-form form {
-  display: grid;
-  gap: 20px; /* Espaçamento entre os campos do formulário */
-}
-
-.form-group label {
-  display: block;
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px; /* Aumenta o padding para conforto */
-  background-color: #333; /* Cor de fundo dos campos */
-  border: none; /* Remove a borda padrão */
-  color: #fff; /* Cor do texto */
-  border-radius: 5px; /* Bordas arredondadas */
-  transition: background-color 0.3s; /* Transição suave */
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  background-color: #444; /* Cor de fundo ao focar */
-}
-
-button {
-  background-color: var(--purple-soft); /* Cor do botão */
-  border: none; /* Remove a borda padrão */
-  color: #fff; /* Texto branco */
-  padding: 15px; /* Aumenta o padding do botão */
-  cursor: pointer; /* Cursor de ponteiro */
-  border-radius: 5px; /* Bordas arredondadas */
-  font-size: 1rem; /* Tamanho da fonte do botão */
-  transition: background-color 0.3s; /* Transição suave */
-}
-
-button:hover {
-  background-color: #7a4b9d; /* Cor do botão ao passar o mouse */
-}
-
-.contact-info {
-  flex-basis: 35%; /* Ajusta a largura da seção de informações de contato */
-  padding-left: 20px; /* Espaçamento à esquerda */
-}
-
-.contact-info h2 {
-  font-size: 2rem; /* Tamanho do título */
-  margin-bottom: 20px; /* Espaçamento abaixo do título */
-}
-
-.contact-info p {
-  margin-bottom: 10px; /* Espaçamento entre os parágrafos */
-  font-size: 1rem; /* Tamanho da fonte */
-}
-
-.contact-info a {
-  color: var(--purple-soft); /* Cor do link */
-  text-decoration: none; /* Remove o sublinhado */
-}
-
-.contact-info a:hover {
-  text-decoration: underline; /* Sublinhado ao passar o mouse */
-}
-
-/* Estilos da seção de Portfolio */
-#portfolio {
-  display: none;
-  transition: all 0.5s ease-in-out;
-}
-.portfolio-section {
-  padding: 60px 20px; /* Ajusta o padding para adicionar mais espaçamento */
-  background-color: #222; /* Fundo escuro, em harmonia com a seção Skills */
-  color: #e5e5e5; /* Cor do texto clara para contraste com o fundo escuro */
-  text-align: center;
-  border-radius: 10px; /* Bordas arredondadas */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
-}
-
-.portfolio-description {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #e5e5e5; /* Texto em cor clara */
-  font-weight: 400;
-}
-
-.portfolio-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.portfolio-card {
-  width: 300px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza a transição */
-}
-
-.portfolio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.portfolio-thumbnail {
-  width: 100%;
-  height: 200px;
-  background-color: var(--gray-light); /* Cor de fundo da imagem do projeto */
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-bottom: 2px solid var(--gray-dark); /* Linha de separação */
-  transition: transform 0.3s ease; /* Suaviza a transição */
-}
-
-.portfolio-thumbnail.loading {
-  background-color: var(--purple-soft); /* Cor de fundo enquanto carrega */
-  animation: pulse 2s infinite ease-in-out; /* Animação de carregamento */
-}
-
-.loading-message {
-  font-size: 1.5rem;
-  color: #fff; /* Texto branco para destacar sobre o fundo roxo */
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  animation: text-blink 1.5s infinite ease-in-out; /* Efeito de piscar */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Sombra para destaque */
-}
-
-.portfolio-info {
-  padding: 20px;
-  font-size: 1rem;
-  color: #e5e5e5; /* Texto em cor clara */
-}
-
-.portfolio-info h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-  color: var(--purple-soft); /* Título em roxo suave */
-  font-weight: 500;
-}
-
-.portfolio-info p {
-  color: #e5e5e5; /* Descrição em cor clara */
-  font-size: 1rem;
-  margin-bottom: 10px; /* Espaçamento entre a descrição e o botão */
-}
-
-/* Botão de visualização do projeto */
-.portfolio-info .view-project {
-  background-color: var(--purple-soft); /* Cor do botão */
-  color: #fff; /* Texto branco */
-  padding: 10px 15px; /* Padding do botão */
-  border: none; /* Sem borda */
-  border-radius: 5px; /* Bordas arredondadas */
-  cursor: pointer; /* Cursor de ponteiro */
-  transition: background-color 0.3s; /* Transição suave */
-}
-
-.portfolio-info .view-project:hover {
-  background-color: #7a4b9d; /* Cor do botão ao passar o mouse */
-}
-
-/* Efeito de Carregamento */
-@keyframes pulse {
-  0% {
-    background-color: #e0e0e0;
-  }
-  50% {
-    background-color: #ccc;
-  }
-  100% {
-    background-color: #e0e0e0;
-  }
-}
-
-/* Efeito de "Blink" no texto "Em breve..." */
-@keyframes text-blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Estilos para a mensagem de sucesso do formulário */
-.submit-message {
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  font-weight: 500;
-  animation: fadeIn 0.5s ease;
-}
-
-.submit-message.success {
-  background-color: rgba(76, 175, 80, 0.2);
-  color: #4caf50;
-  border: 1px solid #4caf50;
-}
-
-.submit-message.error {
-  background-color: rgba(244, 67, 54, 0.2);
-  color: #f44336;
-  border: 1px solid #f44336;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Estilos para botões desabilitados */
-button:disabled {
-  background-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-}
-
-/* Estilos de foco para melhor acessibilidade */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-div[role="button"]:focus,
-div[tabindex="0"]:focus {
-  outline: 2px solid #9b59b6;
-  outline-offset: 2px;
-}
-
-/* Estilo para elementos interativos */
-[role="button"] {
-  cursor: pointer;
-}
-
-/* Melhorias para elementos com hover */
-.skill:hover,
-.portfolio-card:hover,
-.btn:hover,
-button:not(:disabled):hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
-}
-
-/* Skip link para acessibilidade */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  padding: 10px;
-  background-color: #000000;
-  color: #ffffff;
-  z-index: 9999;
-}
-
-.skip-link:focus {
-  left: 0;
-}
-
-/* Melhorias para contrastes de texto */
-.hero-text p,
-.skill-description,
-.portfolio-info p {
-  color: #e0e0e0; /* Aumenta contraste para textos */
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-bottom: 0.5em;
-}
-
-/* Estilos para ícones SVG aninhados para evitar ambiguidade */
-a svg,
-button svg,
-[role="button"] svg {
-  pointer-events: none;
-}
-
-/* Estilos para as seções */
-.section-container {
-  display: none;
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  width: 100%; /* Garante que a seção ocupe toda a largura */
-}
-
-/* Apenas a seção home é visível inicialmente */
-#home.section-container {
-  display: block;
-  opacity: 1;
-}
-
-/* Animação de entrada das seções */
-.section-container.active {
-  display: block;
-  opacity: 1;
-  animation: fadeIn 0.7s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Estilos para tags de projeto */
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.tag {
-  background-color: rgba(155, 89, 182, 0.2);
-  color: var(--purple-soft);
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.tag:hover {
-  background-color: var(--purple-soft);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Melhorias nas animações das seções */
-.section-container {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* Melhoria na animação do botão de contato */
-.btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 7px 15px rgba(155, 89, 182, 0.3);
-}
-
-/* Efeito de hover nos cards de portfólio */
-.portfolio-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Efeito de pulsação para elementos carregando */
-@keyframes pulse {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0.5;
-  }
-}
-
-.loading {
-  animation: pulse 2s infinite ease-in-out;
-}
-
-/* Deixando o header mais responsivo */
-@media screen and (max-width: 768px) {
+/* Estilos para telas menores que 768px */
+@media (max-width: 768px) {
   .container {
     flex-direction: column;
     padding-top: 2rem;
@@ -1224,23 +799,35 @@ button svg,
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   border-radius: 8px;
-  background-color: #333;
-  color: #e5e5e5;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
   margin: 10px;
   width: 220px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(155, 89, 182, 0.3);
 }
 
 .skill-card h3 {
-  color: #fff;
+  color: var(--purple-soft);
   margin: 10px 0;
   font-size: 18px;
+  font-weight: 600;
 }
 
 .skill-percentage {
   font-size: 14px;
-  color: #fff;
+  color: white;
   font-weight: 600;
+}
+
+.skill-progress {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  height: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(155, 89, 182, 0.3);
 }
 
 /* Estilos para o preview de habilidades */
@@ -1374,11 +961,12 @@ button svg,
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   border-radius: 8px;
-  background-color: #333;
-  color: #e5e5e5;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
   margin: 10px;
   width: 220px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(155, 89, 182, 0.3);
 }
 
 /* Animação para as barras de progresso */
@@ -1464,4 +1052,402 @@ button svg,
   border-radius: 10px;
   width: 0%;
   transition: width 1.5s ease-out;
+}
+
+/* Corrigindo a última seção para não ter padding inferior */
+.section-container:last-child {
+  padding-bottom: 0;
+}
+
+/* Container principal */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilos da seção de Contato */
+.contact-section {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .contact-section {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.contact-form,
+.contact-info {
+  flex: 1;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+.contact-form h2,
+.contact-info h2 {
+  color: var(--purple-soft);
+  margin-bottom: 20px;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(155, 89, 182, 0.25);
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
+}
+
+.contact-form button:disabled {
+  background-color: var(--border-color);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-message {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.submit-message.success {
+  background-color: rgba(39, 174, 96, 0.2);
+  color: #27ae60;
+  border: 1px solid #27ae60;
+}
+
+.contact-info p {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-info a {
+  color: var(--purple-soft);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-info a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* Removendo o elemento skip-link */
+.skip-link {
+  display: none;
+}
+
+/* Estilos do menu e header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--gray-dark);
+  color: var(--gray-light);
+}
+
+.navlinks a {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.navlinks a:hover {
+  color: var(--purple-soft);
+}
+
+/* Mantém apenas um conjunto de estilos para cada elemento */
+.section-container {
+  background-color: var(--gray-dark);
+  padding: 40px 20px;
+  margin: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Mantém apenas um conjunto de estilos para cada elemento */
+.hero-text h1 {
+  color: var(--purple-soft);
+  text-shadow: 0 2px 10px rgba(155, 89, 182, 0.5);
+  font-size: 3rem;
+}
+
+.hero-text p {
+  color: white;
+  opacity: 0.9;
+}
+
+.navlinks a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a {
+  color: white;
+  opacity: 0.9;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.contact-form h2,
+.contact-info h2 {
+  color: var(--purple-soft);
+  margin-bottom: 20px;
+}
+
+.contact-info a {
+  color: var(--purple-soft);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+/* Estilo do portfólio */
+.portfolio-section {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  border: 1px solid rgba(155, 89, 182, 0.3);
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin: 2rem 0;
+}
+
+.portfolio-section h2 {
+  color: var(--purple-soft);
+  text-shadow: 0 2px 10px rgba(155, 89, 182, 0.5);
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.portfolio-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+  color: var(--gray-light);
+  font-size: 1.1rem;
+}
+
+.portfolio-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-card {
+  width: 320px;
+  background-color: rgba(30, 30, 30, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(155, 89, 182, 0.3);
+  border-color: var(--purple-soft);
+}
+
+.portfolio-thumbnail {
+  width: 100%;
+  height: 200px;
+  background-color: rgba(20, 20, 20, 0.9);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid var(--border-color);
+  transition: border-color 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-thumbnail {
+  border-bottom-color: var(--purple-soft);
+}
+
+.loading-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(155, 89, 182, 0.7);
+  opacity: 0.8;
+}
+
+.portfolio-card:hover .loading-message {
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    text-shadow: 0 0 15px rgba(155, 89, 182, 1);
+  }
+}
+
+.portfolio-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.portfolio-info h3 {
+  color: var(--purple-soft);
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-info h3 {
+  transform: scale(1.05);
+}
+
+.portfolio-info p {
+  color: var(--gray-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.tag {
+  background-color: rgba(155, 89, 182, 0.2);
+  color: var(--gray-light);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.portfolio-card:hover .tag {
+  background-color: rgba(155, 89, 182, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Responsividade para o portfólio */
+@media (max-width: 768px) {
+  .portfolio-card {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .portfolio-section h2 {
+    font-size: 2rem;
+  }
+
+  .portfolio-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-section {
+    padding: 30px 15px;
+  }
+
+  .portfolio-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .portfolio-info p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Destaque para os ícones */
+.skill-icon i {
+  color: var(--purple-soft);
+  text-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
+  font-size: 3rem;
+}
+
+/* Estilos para o hover dos cards de habilidades */
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: var(--purple-soft);
+}
+
+/* Estilo do portfólio */
+.portfolio-section {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  border: 1px solid rgba(155, 89, 182, 0.3);
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin: 2rem 0;
 }

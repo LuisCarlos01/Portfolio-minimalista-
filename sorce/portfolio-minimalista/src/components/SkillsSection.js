@@ -7,7 +7,7 @@ const SkillsSection = () => {
   const [selectedSkill, setSelectedSkill] = useState(null);
   const { activeSection } = useSection();
   const skillsRef = useRef(null);
-  
+
   const skills = [
     {
       name: "HTML5",
@@ -99,7 +99,7 @@ const SkillsSection = () => {
           card,
           { opacity: 0, y: 30 },
           { 
-            opacity: 1, 
+        opacity: 1, 
             y: 0, 
             duration: 0.4, 
             delay: index * 0.1,
@@ -134,9 +134,9 @@ const SkillsSection = () => {
       gsap.to(
         modal,
         { 
-          opacity: 0, 
+        opacity: 0, 
           y: 20, 
-          duration: 0.3, 
+        duration: 0.3, 
           ease: 'power2.in',
           onComplete: () => setShowPreview(false)
         }
@@ -165,11 +165,11 @@ const SkillsSection = () => {
     <div className="skills-section" ref={skillsRef}>
       <h2>Minhas Habilidades</h2>
       
-      <div className="skills-container">
-        {skills.map((skill, index) => (
-          <div 
+        <div className="skills-container">
+          {skills.map((skill, index) => (
+            <div 
             className="skill-card" 
-            key={index} 
+              key={index}
             onClick={() => openPreview(skill)}
             tabIndex="0"
             role="button"
@@ -185,7 +185,7 @@ const SkillsSection = () => {
             <div className="skill-icon">
               <i className={skill.icon}></i>
             </div>
-            <h3>{skill.name}</h3>
+              <h3>{skill.name}</h3>
             <div className="skill-level">
               <div className="skill-progress">
                 <div 
@@ -202,10 +202,10 @@ const SkillsSection = () => {
               </div>
               <span className="skill-percentage">{skill.level}%</span>
             </div>
-          </div>
-        ))}
+            </div>
+          ))}
       </div>
-      
+
       {showPreview && selectedSkill && (
         <div className="skill-preview-overlay">
           <div 
@@ -238,7 +238,7 @@ const SkillsSection = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
   );
 };
 

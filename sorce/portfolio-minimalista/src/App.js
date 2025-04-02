@@ -24,29 +24,45 @@ function App() {
       section.style.display = 'none';
       section.style.opacity = '0';
     });
+    
+    // Verificar se há algum hash na URL e mostrar a seção correspondente
+    const hash = window.location.hash.replace('#', '');
+    if (hash && ['home', 'skills', 'portfolio', 'contact'].includes(hash)) {
+      const hashSection = document.getElementById(hash);
+      if (hashSection) {
+        // Ocultar todas as seções
+        document.querySelectorAll('.section-container').forEach(section => {
+          section.style.display = 'none';
+          section.style.opacity = '0';
+        });
+        
+        // Mostrar a seção do hash
+        hashSection.style.display = 'block';
+        hashSection.style.opacity = '1';
+      }
+    }
   }, []);
 
   return (
     <SectionProvider>
-      {/* Skip link para acessibilidade */}
-      <a href="#content" className="skip-link">Pular para o conteúdo principal</a>
-      
-      <Preloader />
-      <div className="content" id="content">
-        <div id="home" className="section-container">
-          <HeroSection />
+      <div className="app-container">
+        <Preloader />
+        <div className="content" id="content">
+          <div id="home" className="section-container">
+            <HeroSection />
+          </div>
+          <div id="skills" className="section-container">
+            <SkillsSection />
+          </div>
+          <div id="portfolio" className="section-container">
+            <PortfolioSection />
+          </div>
+          <div id="contact" className="section-container">
+            <ContactSection />
+          </div>
         </div>
-        <div id="skills" className="section-container">
-          <SkillsSection />
-        </div>
-        <div id="portfolio" className="section-container">
-          <PortfolioSection />
-        </div>
-        <div id="contact" className="section-container">
-          <ContactSection />
-        </div>
+        <Footer />
       </div>
-      <Footer />
     </SectionProvider>
   );
 }
