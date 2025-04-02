@@ -107,6 +107,7 @@ nav .togglebtn {
   display: none; /* Oculta por padrão */
   flex-direction: column; /* Alinha as barras em coluna */
   justify-content: space-around; /* Espaçamento entre as barras */
+  transition: transform 0.3s ease; /* Transição suave para transformação */
 }
 
 nav .togglebtn .bar {
@@ -129,6 +130,11 @@ nav .togglebtn.active .bar:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px); /* Rotaciona a terceira barra */
 }
 
+/* Efeito de hover no botão de alternância */
+nav .togglebtn:hover {
+  transform: scale(1.1); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+}
+
 /* Exibir o botão de alternância em telas menores */
 @media (max-width: 768px) {
   nav .togglebtn {
@@ -146,7 +152,7 @@ nav .togglebtn.active .bar:nth-child(3) {
     background-color: var(--gray-dark); /* Fundo cinza escuro */
     z-index: 3;
     box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
-    transition: 0.5s;
+    transition: right 0.5s ease; /* Transição suave para a posição */
     padding: 25px 0;
   }
 
@@ -201,12 +207,11 @@ nav .navlinks {
 }
 
 nav .navlinks li {
-  display: inline-block;
+  margin: 15px 0; /* Espaçamento entre os links */
 }
 
 nav .navlinks li a {
   color: var(--gray-light); /* Cinza claro */
-  margin-right: 2.5rem;
   padding: 10px 15px; /* Adiciona padding para aumentar a área clicável */
   border-radius: 5px; /* Bordas arredondadas */
   transition: background-color 0.3s, color 0.3s; /* Transições suaves */
@@ -215,6 +220,12 @@ nav .navlinks li a {
 nav .navlinks li a:hover {
   background-color: var(--purple-soft); /* Fundo roxo ao passar o mouse */
   color: #fff; /* Texto branco ao passar o mouse */
+  transform: scale(1.05); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+}
+
+nav .navlinks li a:focus {
+  outline: none; /* Remove o contorno padrão */
+  box-shadow: 0 0 5px var(--purple-soft); /* Adiciona uma sombra ao foco */
 }
 
 /* Estilo da Foto perfil */
@@ -655,7 +666,7 @@ footer {
   display: flex; /* Flexbox para organizar os itens */
   justify-content: space-between; /* Espaçamento entre os itens */
   align-items: center; /* Alinha verticalmente */
-  padding: 20px; /* Padding do footer */
+  padding: 10px; /* Reduz o padding do footer */
   background-color: var(--gray-dark); /* Fundo cinza escuro */
   color: var(--gray-light); /* Texto cinza claro */
   position: relative; /* Para posicionamento do efeito */
@@ -675,7 +686,7 @@ footer:hover {
   flex-wrap: wrap;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px; /* Reduz o padding do container do footer */
 }
 
 .footer-logo {

@@ -1,0 +1,970 @@
+/* Reset e Estilos Básicos */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+:root {
+  --purple-soft: #9b59b6;
+  --gray-light: #b3b3b3;
+  --gray-dark: #333;
+}
+
+html {
+  scroll-behavior: smooth; /* Suaviza a rolagem */
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #f4f4f4; /* Fundo claro minimalista */
+}
+
+/* Estilo do Cabeçalho Principal */
+.hero-header {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    var(--gray-dark),
+    #1a1a1a
+  ); /* Gradiente para o fundo */
+}
+
+.wrapper {
+  width: 1280px;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Estilo do Cabeçalho e Navegação */
+header {
+  padding: 40px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 25px;
+  color: #fffefe;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo i {
+  height: 45px;
+  width: 45px;
+  background-color: var(--purple-soft); /* Roxo suave */
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--gray-light); /* Cinza claro */
+  display: inline-block; /* Exibe como bloco inline */
+  opacity: 0; /* O texto começa invisível */
+  transform: translateY(-10px); /* O texto começa deslocado para cima */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Transições suaves */
+}
+
+.logo:hover .logo-text {
+  opacity: 1; /* Torna o texto visível */
+  transform: translateY(0); /* Move o texto para a posição original */
+}
+
+/* Estilo do botão de alternância */
+nav .togglebtn {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 45px;
+  right: 3%;
+  z-index: 5;
+  cursor: pointer;
+  display: none; /* Oculta por padrão */
+  flex-direction: column; /* Alinha as barras em coluna */
+  justify-content: space-around; /* Espaçamento entre as barras */
+  transition: transform 0.3s ease; /* Transição suave para transformação */
+}
+
+nav .togglebtn .bar {
+  height: 3px;
+  width: 100%;
+  background-color: var(--purple-soft); /* Cor das barras */
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+/* Estilo para quando o botão é clicado */
+nav .togglebtn.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px); /* Rotaciona a primeira barra */
+}
+
+nav .togglebtn.active .bar:nth-child(2) {
+  opacity: 0; /* Oculta a segunda barra */
+}
+
+nav .togglebtn.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px); /* Rotaciona a terceira barra */
+}
+
+/* Efeito de hover no botão de alternância */
+nav .togglebtn:hover {
+  transform: scale(1.1); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+}
+
+/* Exibir o botão de alternância em telas menores */
+@media (max-width: 768px) {
+  nav .togglebtn {
+    display: flex; /* Exibe o botão em telas menores */
+  }
+
+  nav .navlinks {
+    display: none; /* Oculta as opções de navegação por padrão */
+    position: absolute; /* Posiciona o menu */
+    top: 110px; /* Ajusta a posição */
+    right: -100%; /* Oculta fora da tela */
+    bottom: 0;
+    width: 60%;
+    height: 100vh;
+    background-color: var(--gray-dark); /* Fundo cinza escuro */
+    z-index: 3;
+    box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
+    transition: right 0.5s ease; /* Transição suave para a posição */
+    padding: 25px 0;
+  }
+
+  nav .navlinks.open {
+    right: 0; /* Mostra o menu ao abrir */
+  }
+}
+
+/* Botão sobre mim */
+.circlebutton {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; /* Ajuste conforme necessário */
+  height: 100px; /* Ajuste conforme necessário */
+  border-radius: 100%;
+  background-color: #343434; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  font-size: 15px; /* Tamanho da fonte */
+  text-align: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  overflow: hidden; /* Garante que o preenchimento não saia do botão */
+  transition: background-color 0.4s, transform 0.4s; /* Transição suave para cor e transformação */
+  will-change: background-color, transform; /* Para melhor performance */
+}
+
+.circlebutton:hover {
+  background-color: var(--purple-soft); /* Cor ao passar o mouse */
+  transform: scale(1.2); /* Aumenta o tamanho em 10% */
+}
+
+.circlebutton:active {
+  transform: scale(0.9); /* Efeito de clique */
+}
+
+nav .togglebtn span {
+  display: block;
+  background-color: var(--purple-soft); /* Roxo suave */
+  margin: 5px 0;
+  width: 100%;
+  height: 3px;
+  transition: 0.3s;
+  transition-property: transform, opacity;
+}
+
+nav .navlinks {
+  list-style-type: none;
+}
+
+nav .navlinks li {
+  margin: 15px 0; /* Espaçamento entre os links */
+}
+
+nav .navlinks li a {
+  color: var(--gray-light); /* Cinza claro */
+  padding: 10px 15px; /* Adiciona padding para aumentar a área clicável */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s, color 0.3s; /* Transições suaves */
+}
+
+nav .navlinks li a:hover {
+  background-color: var(--purple-soft); /* Fundo roxo ao passar o mouse */
+  color: #fff; /* Texto branco ao passar o mouse */
+  transform: scale(1.05); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+}
+
+nav .navlinks li a:focus {
+  outline: none; /* Remove o contorno padrão */
+  box-shadow: 0 0 5px var(--purple-soft); /* Adiciona uma sombra ao foco */
+}
+
+/* Estilo da Foto perfil */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4rem;
+}
+
+.container .hero-pic {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 10px solid #555; /* Borda cinza escuro */
+  box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.2); /* Sombra discreta */
+}
+
+.hero-pic img {
+  height: 100%;
+  width: 100%;
+  transition: 0.8s;
+}
+
+.hero-pic img:hover {
+  transform: scale(1.1);
+}
+
+.hero-text {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-text h5 {
+  color: var(--gray-light); /* Cinza claro */
+  font-size: 14px;
+}
+
+.hero-text h5 span {
+  color: var(--purple-soft); /* Roxo suave */
+  font-size: 16px;
+}
+
+.hero-text h1 {
+  color: var(--purple-soft); /* Título em roxo suave */
+  font-size: 3rem;
+}
+
+.hero-text p {
+  color: var(--gray-light); /* Texto em cinza claro */
+}
+
+/* Estilo do grupo de botões */
+.btn-group {
+  margin: 45px 0;
+  display: flex; /* Usar flexbox para alinhar os botões */
+  flex-wrap: wrap; /* Permitir que os botões quebrem para a próxima linha se necessário */
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.btn-group .btn {
+  border-color: #d5d5d5;
+  color: #fff;
+  background-color: var(--gray-dark);
+  padding: 12px 25px;
+  margin: 5px 0;
+  border-radius: 30px;
+  border: 2px solid var(--gray-light); /* Borda cinza claro */
+  box-shadow: 0 10px 10px -8px rgba(0, 0, 0, 0.2); /* Sombra discreta */
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transições suaves */
+  cursor: pointer; /* Cursor de ponteiro */
+}
+
+.btn-group .btn:hover {
+  background-color: var(--purple-soft); /* Cor de fundo ao passar o mouse */
+  transform: translateY(-3px); /* Eleva o botão ao passar o mouse */
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+}
+
+.btn.active {
+  border-color: var(--purple-soft); /* Borda ativa em roxo suave */
+}
+
+/* Responsividade para botões */
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column; /* Alinha os botões em coluna em telas menores */
+    align-items: center; /* Centraliza os botões */
+  }
+
+  .btn-group .btn {
+    width: 100%; /* Faz com que os botões ocupem 100% da largura */
+    max-width: 300px; /* Define uma largura máxima para os botões */
+  }
+}
+
+/* Ícones de redes sociais */
+.hero-text .social i {
+  color: var(--gray-light); /* Ícones em cinza claro */
+  font-size: 18px;
+  margin-right: 10px;
+  transition: 0.5s;
+}
+
+.hero-text .social i:hover {
+  color: var(--purple-soft); /* Cor roxa ao passar o mouse */
+  transform: rotate(360deg);
+}
+
+/* Design Responsivo */
+@media (max-width: 930px) {
+  nav .togglebtn {
+    display: initial;
+  }
+
+  .click {
+    top: 45px;
+  }
+
+  nav .navlinks {
+    position: absolute;
+    top: 110px;
+    right: -100%;
+    bottom: 0;
+    width: 60%;
+    height: 100vh;
+    background-color: var(--gray-dark); /* Fundo cinza escuro */
+    z-index: 3;
+    box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+    padding: 25px 0;
+  }
+
+  nav .navlinks li {
+    display: block;
+  }
+
+  nav .navlinks li a {
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  nav .navlinks.open {
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding-top: 2rem;
+  }
+
+  .hero-text {
+    padding: 40px 0;
+  }
+
+  .wrapper {
+    width: 100%; /* Ajusta a largura da wrapper para 100% em telas menores */
+    padding: 0 10px; /* Reduz o padding lateral */
+  }
+
+  .hero-header {
+    min-height: 70vh; /* Ajusta a altura mínima da seção hero */
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem; /* Reduz o tamanho da fonte do título */
+  }
+
+  .hero-text h5 {
+    font-size: 12px; /* Reduz o tamanho da fonte do subtítulo */
+  }
+
+  .btn-group .btn {
+    padding: 10px 15px; /* Ajusta o padding dos botões */
+    font-size: 14px; /* Reduz o tamanho da fonte dos botões */
+  }
+
+  .circlebutton {
+    width: 80px; /* Ajusta o tamanho do botão circular */
+    height: 80px; /* Ajusta o tamanho do botão circular */
+    font-size: 12px; /* Reduz o tamanho da fonte do botão circular */
+  }
+
+  .skills-section {
+    padding: 40px 10px; /* Ajusta o padding da seção de habilidades */
+  }
+
+  .skill {
+    width: 100%; /* Faz com que as habilidades ocupem 100% da largura */
+    margin: 10px 0; /* Ajusta a margem */
+  }
+
+  .portfolio-card {
+    width: 90%; /* Ajusta a largura dos cartões de portfólio */
+    margin: 10px 0; /* Ajusta a margem */
+  }
+
+  .portfolio-info h3 {
+    font-size: 1.2rem; /* Reduz o tamanho da fonte do título do portfólio */
+  }
+
+  .portfolio-info p {
+    font-size: 0.9rem; /* Reduz o tamanho da fonte da descrição do portfólio */
+  }
+
+  .portfolio-info .view-project {
+    padding: 8px 12px; /* Ajusta o padding do botão de visualização */
+    font-size: 14px; /* Reduz o tamanho da fonte do botão de visualização */
+  }
+}
+
+/* Estilos para telas menores que 480px */
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 2rem; /* Reduz ainda mais o tamanho da fonte do título */
+  }
+
+  .hero-text h5 {
+    font-size: 10px; /* Reduz ainda mais o tamanho da fonte do subtítulo */
+  }
+
+  .btn-group .btn {
+    font-size: 12px; /* Reduz o tamanho da fonte dos botões */
+  }
+
+  .circlebutton {
+    width: 60px; /* Ajusta o tamanho do botão circular */
+    height: 60px; /* Ajusta o tamanho do botão circular */
+    font-size: 10px; /* Reduz o tamanho da fonte do botão circular */
+  }
+
+  .portfolio-info h3 {
+    font-size: 1rem; /* Reduz o tamanho da fonte do título do portfólio */
+  }
+
+  .portfolio-info p {
+    font-size: 0.8rem; /* Reduz o tamanho da fonte da descrição do portfólio */
+  }
+}
+
+/* Estilo da seção de habilidades */
+.skills-section {
+  display: none; /* Oculta a seção inicialmente */
+  padding: 60px 20px; /* Adiciona espaço ao redor */
+  background-color: #222; /* Fundo da seção */
+  color: #e5e5e5; /* Cor do texto */
+  text-align: center; /* Centraliza o texto */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
+}
+
+.skills-container {
+  display: flex; /* Exibe em linha */
+  justify-content: center; /* Centraliza os itens */
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+  gap: 10px; /* Adiciona espaçamento uniforme entre as habilidades */
+}
+
+.skill {
+  margin: 30px; /* Margem em volta dos itens */
+  padding: 20px; /* Padding interno */
+  border-radius: 10px; /* Bordas arredondadas */
+  background-color: var(--gray-dark); /* Fundo dos itens */
+  transition: transform 0.3s, box-shadow 0.3s; /* Suaviza a transição */
+  color: var(--gray-light); /* Cor do texto */
+  width: 150px; /* Largura fixa */
+  height: 200px; /* Ajuste a altura conforme necessário */
+  position: relative; /* Para posicionar a descrição */
+  display: flex; /* Flex para alinhar conteúdo */
+  flex-direction: column; /* Alinha em coluna */
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+  text-align: center; /* Centraliza o texto */
+}
+
+.skill:hover {
+  transform: scale(1.05); /* Aumenta ligeiramente ao passar o mouse */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra ao passar o mouse */
+}
+
+/* Estilo dos ícones de habilidades */
+.skill i {
+  font-size: 50px; /* Aumenta o tamanho do ícone */
+  color: var(--purple-soft); /* Define a cor do ícone */
+  margin-bottom: 10px; /* Espaço entre o ícone e o texto */
+}
+
+/* Estilo do Modal */
+.skill-preview {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Fundo mais escuro para o modal */
+  color: white;
+  z-index: 1000;
+  opacity: 0; /* Definido como invisível inicialmente */
+  transition: opacity 0.5s; /* Suaviza a transição de visibilidade */
+}
+
+/* Estilo do conteúdo do modal */
+.preview-content {
+  background: #444;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center; /* Certifica que o texto está centralizado */
+  max-width: 500px; /* Define uma largura máxima para o modal */
+  width: 80%; /* Controla a largura responsiva do modal */
+}
+
+.close-preview {
+  cursor: pointer;
+  margin-top: 20px;
+  color: var(--purple-soft); /* Roxo suave */
+}
+
+/* Mostra a descrição ao passar o mouse */
+.skill-description {
+  display: none; /* Inicialmente oculta */
+  opacity: 0; /* Torna invisível */
+  transform: translate(-50%, 0); /* Move para a posição original */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Suaviza a transição */
+  text-align: center; /* Centraliza o texto */
+  margin-top: 10px; /* Espaçamento entre o ícone e a descrição */
+}
+
+/* Preloader da Página com Olá */
+.preloader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--gray-dark); /* Fundo do preloader */
+  color: #fff; /* Cor do texto */
+  font-size: 2rem;
+  transition: opacity 1s ease;
+}
+
+.content {
+  display: none; /* Oculta o conteúdo inicialmente */
+}
+
+/* Estilos para o Logo e Copyright */
+.copyright {
+  font-family: fantasy;
+  align-items: center; /* Alinha verticalmente */
+  display: inline-flex; /* Exibe como flex */
+  transition: transform 0.6s ease; /* Transição suave para a rotação */
+}
+
+.code-by {
+  align-items: center; /* Alinha verticalmente */
+  display: inline-flex; /* Exibe como flex */
+  transition: opacity 0.4s ease; /* Transição suave para esconder "code by" */
+}
+
+.highlight {
+  display: inline-flex; /* Exibe como flex */
+  align-items: center; /* Alinha verticalmente */
+  opacity: 0; /* Começa invisível */
+  transition: opacity 0.4s ease; /* Transição suave para mostrar "Luis Carlos" */
+  color: #ffffff; /* Cor do destaque */
+}
+
+.logo:hover .copyright {
+  transform: rotate(360deg); /* Rotaciona ao passar o mouse */
+}
+
+.logo-text {
+  font-family: "Dancing Script";
+  display: inline-block; /* Exibe como bloco inline */
+}
+
+.highlight {
+  font-family: "Dancing Script", cursive; /* Fonte do destaque */
+  color: #ffffff; /* Cor branca para "Luis" */
+  opacity: 0; /* Começa invisível */
+  transform: translateY(-10px); /* Começa deslocado para cima */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Suaviza a animação */
+}
+
+.logo:hover .logo-text,
+.logo:hover .highlight {
+  opacity: 1; /* Torna o texto visível */
+  transform: translateY(0); /* Move o texto para a posição original */
+}
+
+/* CSS (em style.css) */
+.clickable {
+  cursor: pointer;
+}
+
+/* Spinner */
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spinner 1s linear infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.section {
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.section.active {
+  opacity: 1;
+}
+
+/* Estilo do footer */
+footer {
+  display: flex; /* Flexbox para organizar os itens */
+  justify-content: space-between; /* Espaçamento entre os itens */
+  align-items: center; /* Alinha verticalmente */
+  padding: 10px; /* Reduz o padding do footer */
+  background-color: var(--gray-dark); /* Fundo cinza escuro */
+  color: var(--gray-light); /* Texto cinza claro */
+  position: relative; /* Para posicionamento do efeito */
+  margin-top: 50px; /* Espaçamento acima do footer */
+  border-top: 2px solid var(--purple-soft); /* Linha superior roxa */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+footer:hover {
+  background-color: #333; /* Escurece o fundo ao passar o mouse */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px; /* Reduz o padding do container do footer */
+}
+
+.footer-logo {
+  font-size: 1.5rem; /* Aumenta o tamanho da fonte */
+  color: var(--purple-soft); /* Cor do texto do logo */
+  transition: transform 0.3s, color 0.3s; /* Transições suaves */
+}
+
+.footer-logo:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+  color: #fff; /* Muda a cor do texto ao passar o mouse */
+}
+
+.footer-links a {
+  color: var(--gray-light); /* Cinza claro */
+  margin: 0 15px;
+  transition: color 0.3s; /* Transição suave para a cor */
+}
+
+.footer-links a:hover {
+  color: var(--purple-soft); /* Roxo suave ao passar o mouse */
+  text-decoration: underline; /* Sublinhado ao passar o mouse */
+}
+
+.footer-social a {
+  margin: 0 10px;
+  color: var(--gray-light); /* Cinza claro */
+  font-size: 20px;
+  transition: color 0.3s; /* Transição suave para a cor */
+}
+
+.footer-social a:hover {
+  color: var(--purple-soft); /* Roxo suave ao passar o mouse */
+}
+
+/* Efeito para a fonte "© 2024 Luís Carlos" */
+.footer-logo span {
+  font-family: "Dancing Script", cursive; /* Fonte cursiva para o copyright */
+  font-size: 1.5rem; /* Tamanho da fonte */
+  transition: transform 0.3s, text-shadow 0.3s; /* Transições suaves */
+}
+
+.footer-logo span:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Sombra ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    margin: 10px 0;
+  }
+}
+/* Suaviza a rolagem */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos da seção de Contato */
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
+}
+
+.contact-form {
+  flex-basis: 60%; /* Ajusta a largura do formulário */
+}
+
+.contact-form h2 {
+  font-size: 2rem; /* Tamanho do título */
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
+}
+
+.contact-form form {
+  display: grid;
+  gap: 20px; /* Espaçamento entre os campos do formulário */
+}
+
+.form-group label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px; /* Aumenta o padding para conforto */
+  background-color: #333; /* Cor de fundo dos campos */
+  border: none; /* Remove a borda padrão */
+  color: #fff; /* Cor do texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s; /* Transição suave */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  background-color: #444; /* Cor de fundo ao focar */
+}
+
+button {
+  background-color: var(--purple-soft); /* Cor do botão */
+  border: none; /* Remove a borda padrão */
+  color: #fff; /* Texto branco */
+  padding: 15px; /* Aumenta o padding do botão */
+  cursor: pointer; /* Cursor de ponteiro */
+  border-radius: 5px; /* Bordas arredondadas */
+  font-size: 1rem; /* Tamanho da fonte do botão */
+  transition: background-color 0.3s; /* Transição suave */
+}
+
+button:hover {
+  background-color: #7a4b9d; /* Cor do botão ao passar o mouse */
+}
+
+.contact-info {
+  flex-basis: 35%; /* Ajusta a largura da seção de informações de contato */
+  padding-left: 20px; /* Espaçamento à esquerda */
+}
+
+.contact-info h2 {
+  font-size: 2rem; /* Tamanho do título */
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
+}
+
+.contact-info p {
+  margin-bottom: 10px; /* Espaçamento entre os parágrafos */
+  font-size: 1rem; /* Tamanho da fonte */
+}
+
+.contact-info a {
+  color: var(--purple-soft); /* Cor do link */
+  text-decoration: none; /* Remove o sublinhado */
+}
+
+.contact-info a:hover {
+  text-decoration: underline; /* Sublinhado ao passar o mouse */
+}
+
+/* Estilos da seção de Portfolio */
+#portfolio {
+  display: none;
+  transition: all 0.5s ease-in-out;
+}
+.portfolio-section {
+  padding: 60px 20px; /* Ajusta o padding para adicionar mais espaçamento */
+  background-color: #222; /* Fundo escuro, em harmonia com a seção Skills */
+  color: #e5e5e5; /* Cor do texto clara para contraste com o fundo escuro */
+  text-align: center;
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
+}
+
+.portfolio-description {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #e5e5e5; /* Texto em cor clara */
+  font-weight: 400;
+}
+
+.portfolio-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.portfolio-card {
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza a transição */
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px); /* Efeito de hover com leve elevação */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra mais intensa ao passar o mouse */
+  border: 1px solid var(--purple-soft); /* Borda roxa ao passar o mouse */
+}
+
+.portfolio-thumbnail {
+  width: 100%;
+  height: 200px;
+  background-color: var(--gray-light); /* Cor de fundo da imagem do projeto */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 2px solid var(--gray-dark); /* Linha de separação */
+  transition: transform 0.3s ease; /* Suaviza a transição */
+}
+
+.portfolio-thumbnail.loading {
+  background-color: var(--purple-soft); /* Cor de fundo enquanto carrega */
+  animation: pulse 2s infinite ease-in-out; /* Animação de carregamento */
+}
+
+.loading-message {
+  font-size: 1.5rem;
+  color: #fff; /* Texto branco para destacar sobre o fundo roxo */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: text-blink 1.5s infinite ease-in-out; /* Efeito de piscar */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Sombra para destaque */
+}
+
+.portfolio-info {
+  padding: 20px;
+  font-size: 1rem;
+  color: #e5e5e5; /* Texto em cor clara */
+}
+
+.portfolio-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--purple-soft); /* Título em roxo suave */
+  font-weight: 500;
+}
+
+.portfolio-info p {
+  color: #e5e5e5; /* Descrição em cor clara */
+  font-size: 1rem;
+  margin-bottom: 10px; /* Espaçamento entre a descrição e o botão */
+}
+
+/* Botão de visualização do projeto */
+.portfolio-info .view-project {
+  background-color: var(--purple-soft); /* Cor do botão */
+  color: #fff; /* Texto branco */
+  padding: 10px 15px; /* Padding do botão */
+  border: none; /* Sem borda */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: background-color 0.3s; /* Transição suave */
+}
+
+.portfolio-info .view-project:hover {
+  background-color: #7a4b9d; /* Cor do botão ao passar o mouse */
+}
+
+/* Efeito de Carregamento */
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #ccc;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+/* Efeito de "Blink" no texto "Em breve..." */
+@keyframes text-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

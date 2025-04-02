@@ -179,10 +179,10 @@ togglebtn.addEventListener("click", function () {
     if (nav.classList.contains("open")) {
         console.log('Menu aberto.');
         nav.style.display = 'block';
-        gsap.fromTo(nav, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 });
+        gsap.fromTo(nav, { opacity: 0, right: '-100%' }, { opacity: 1, right: '0', duration: 0.5 }); // Transição suave
     } else {
         console.log('Menu fechado.');
-        gsap.to(nav, { opacity: 0, y: -10, duration: 0.4, onComplete: () => {
+        gsap.to(nav, { opacity: 0, right: '-100%', duration: 0.5, onComplete: () => {
             nav.style.display = 'none';
         }});
     }
@@ -194,7 +194,7 @@ navLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (nav.classList.contains("open")) {
             console.log('Link do menu clicado. Fechando o menu.');
-            gsap.to(nav, { opacity: 0, y: -10, duration: 0.4, onComplete: () => {
+            gsap.to(nav, { opacity: 0, right: '-100%', duration: 0.5, onComplete: () => {
                 nav.style.display = 'none';
                 nav.classList.remove("open");
                 togglebtn.classList.remove("click");
