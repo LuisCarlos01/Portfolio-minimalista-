@@ -97,62 +97,62 @@ header {
 
 /* Estilo do botão de alternância */
 nav .togglebtn {
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    top: 45px;
-    right: 3%;
-    z-index: 5;
-    cursor: pointer;
-    display: none; /* Oculta por padrão */
-    flex-direction: column; /* Alinha as barras em coluna */
-    justify-content: space-around; /* Espaçamento entre as barras */
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 45px;
+  right: 3%;
+  z-index: 5;
+  cursor: pointer;
+  display: none; /* Oculta por padrão */
+  flex-direction: column; /* Alinha as barras em coluna */
+  justify-content: space-around; /* Espaçamento entre as barras */
 }
 
 nav .togglebtn .bar {
-    height: 3px;
-    width: 100%;
-    background-color: var(--purple-soft); /* Cor das barras */
-    transition: all 0.3s ease; /* Transição suave */
+  height: 3px;
+  width: 100%;
+  background-color: var(--purple-soft); /* Cor das barras */
+  transition: all 0.3s ease; /* Transição suave */
 }
 
 /* Estilo para quando o botão é clicado */
 nav .togglebtn.active .bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px); /* Rotaciona a primeira barra */
+  transform: rotate(45deg) translate(5px, 5px); /* Rotaciona a primeira barra */
 }
 
 nav .togglebtn.active .bar:nth-child(2) {
-    opacity: 0; /* Oculta a segunda barra */
+  opacity: 0; /* Oculta a segunda barra */
 }
 
 nav .togglebtn.active .bar:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px); /* Rotaciona a terceira barra */
+  transform: rotate(-45deg) translate(5px, -5px); /* Rotaciona a terceira barra */
 }
 
 /* Exibir o botão de alternância em telas menores */
 @media (max-width: 768px) {
-    nav .togglebtn {
-        display: flex; /* Exibe o botão em telas menores */
-    }
+  nav .togglebtn {
+    display: flex; /* Exibe o botão em telas menores */
+  }
 
-    nav .navlinks {
-        display: none; /* Oculta as opções de navegação por padrão */
-        position: absolute; /* Posiciona o menu */
-        top: 110px; /* Ajusta a posição */
-        right: -100%; /* Oculta fora da tela */
-        bottom: 0;
-        width: 60%;
-        height: 100vh;
-        background-color: var(--gray-dark); /* Fundo cinza escuro */
-        z-index: 3;
-        box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
-        transition: 0.5s;
-        padding: 25px 0;
-    }
+  nav .navlinks {
+    display: none; /* Oculta as opções de navegação por padrão */
+    position: absolute; /* Posiciona o menu */
+    top: 110px; /* Ajusta a posição */
+    right: -100%; /* Oculta fora da tela */
+    bottom: 0;
+    width: 60%;
+    height: 100vh;
+    background-color: var(--gray-dark); /* Fundo cinza escuro */
+    z-index: 3;
+    box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+    padding: 25px 0;
+  }
 
-    nav .navlinks.open {
-        right: 0; /* Mostra o menu ao abrir */
-    }
+  nav .navlinks.open {
+    right: 0; /* Mostra o menu ao abrir */
+  }
 }
 
 /* Botão sobre mim */
