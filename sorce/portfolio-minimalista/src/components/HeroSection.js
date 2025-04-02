@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import Header from './Header';
 import Typed from 'typed.js';
 import { gsap } from 'gsap';
+import { useSection } from '../contexts/SectionContext';
 
 const HeroSection = () => {
   const typedElement = useRef(null);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const { showSection } = useSection();
   
   // Usando Typed.js para efeito de digitação
   useEffect(() => {
@@ -62,22 +64,53 @@ const HeroSection = () => {
     window.addEventListener('resize', checkTextVisibility);
     
     // Verificar inicialmente após um pequeno atraso para garantir que os elementos foram renderizados
-    setTimeout(checkTextVisibility, 100);
+    const timeoutId = setTimeout(checkTextVisibility, 100);
 
     // Limpeza
     return () => {
       window.removeEventListener('scroll', checkTextVisibility);
       window.removeEventListener('resize', checkTextVisibility);
+      clearTimeout(timeoutId);
     };
   }, [isButtonVisible]);
 
   // Função para rolar até a seção hero quando o botão "About me" é clicado
   const scrollToHero = () => {
-    const heroHeader = document.querySelector('.hero-header');
-    if (heroHeader) {
-      heroHeader.scrollIntoView({ behavior: 'smooth' });
-    }
+    showSection('home');
   };
+
+  // Função para Download CV
+  const handleDownloadCV = (e) => {
+    e.preventDefault();
+    // Como o arquivo do CV não está disponível, mostrar um alerta
+    alert('O CV estará disponível em breve!');
+  };
+
+  // Navegação para contato
+  const navigateToContact = (e) => {
+    e.preventDefault();
+    showSection('contact');
+  };
+
+  // Animação inicial para a hero section
+  useEffect(() => {
+    const timeline = gsap.timeline();
+    
+    timeline.fromTo('.hero-pic', 
+      { opacity: 0, x: -50 }, 
+      { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' }
+    );
+    
+    timeline.fromTo('.hero-text h5, .hero-text h1, .hero-text p', 
+      { opacity: 0, y: 30 }, 
+      { opacity: 1, y: 0, stagger: 0.2, duration: 0.6, ease: 'power2.out' }
+    );
+    
+    timeline.fromTo('.btn-group, .social', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, stagger: 0.2, duration: 0.5, ease: 'power2.out' }
+    );
+  }, []);
 
   return (
     <div className="hero-header">
@@ -86,7 +119,7 @@ const HeroSection = () => {
 
         <div className="container">
           <div className="hero-pic">
-            <img src="/images/handsome.png" alt="perfil" />
+            <img src="/images/handsome.png" alt="Luis Carlos profile" />
           </div>
           <div className="hero-text">
             <h5>Hi I'm <span className="input" ref={typedElement}>Freelancer</span></h5>
@@ -95,14 +128,14 @@ const HeroSection = () => {
               Creating robust and efficient backend architectures is not just my profession; It's my passion!
             </p>
             <div className="btn-group">
-              <a href="/" className="btn active">Download CV</a>
-              <a href="#contact-section" className="btn">Contact</a>
+              <a href="#" onClick={handleDownloadCV} className="btn active" aria-label="Download CV">Download CV</a>
+              <a href="#contact" onClick={navigateToContact} className="btn" aria-label="Ir para seção de contato">Contact</a>
             </div>
             <div className="social">
-              <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <i className="fa-brands fa-linkedin"></i>
               </a>
-              <a href="https://github.com/LuisCarlos01" aria-label="GitHub">
+              <a href="https://github.com/LuisCarlos01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <i className="fa-brands fa-github"></i>
               </a>
             </div>
@@ -110,7 +143,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <div className="circlebutton" id="aboutButton" onClick={scrollToHero}>
+      <div className="circlebutton" id="aboutButton" onClick={scrollToHero} role="button" tabIndex="0" aria-label="Sobre mim">
         <span>About me</span>
       </div>
     </div>

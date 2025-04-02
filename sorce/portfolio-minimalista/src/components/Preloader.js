@@ -6,7 +6,14 @@ const Preloader = () => {
   const { animatePreloader } = useGsapAnimations();
 
   useEffect(() => {
-    animatePreloader();
+    // Pequeno atraso para garantir que o DOM esteja pronto
+    const timer = setTimeout(() => {
+      animatePreloader();
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [animatePreloader]);
 
   return (

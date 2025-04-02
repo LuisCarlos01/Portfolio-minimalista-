@@ -4,9 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Componente para rolar para o topo quando a página carrega
+const ScrollToTop = () => {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
+  return null;
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <ScrollToTop />
     <App />
   </React.StrictMode>
 );

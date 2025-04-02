@@ -8,17 +8,17 @@ const Footer = () => {
           <span>© 2024 Luís Carlos</span>
         </div>
         <div className="footer-links">
-          <a href="/">Home</a>
-          <a href="/#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#contact-section">Contact</a>
+          <a href="/" aria-label="Ir para Home">Home</a>
+          <a href="/#about" aria-label="Ir para About">About</a>
+          <a href="#skills" aria-label="Ir para Skills">Skills</a>
+          <a href="#portfolio" aria-label="Ir para Portfolio">Portfolio</a>
+          <a href="#contact-section" aria-label="Ir para Contact">Contact</a>
         </div>
         <div className="footer-social">
-          <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/luiz-carlos-vitoriano-neto-56a58321b/?trk=opento_sprofile_topcard" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a href="https://github.com/LuisCarlos01" aria-label="GitHub">
+          <a href="https://github.com/LuisCarlos01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <i className="fa-brands fa-github"></i>
           </a>
         </div>
