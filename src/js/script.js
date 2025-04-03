@@ -257,3 +257,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+/* Efeito para exibição do footer quando o usuário rolar a página */
+window.onscroll = function() {
+    var footer = document.querySelector('footer');
+    if (window.scrollY > 100) { // Exibe o footer após rolar 100px para baixo
+        footer.classList.add('visible');
+    }
+};

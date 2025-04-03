@@ -475,8 +475,7 @@ nav .navlinks li a:hover {
   .section.active {
     opacity: 1;
   }
-  
-/* Estilo do footer */
+  /* Estilo do footer */
 footer {
     display: none; /* Oculta o footer inicialmente */
     opacity: 0; /* Torna invisível inicialmente */
@@ -488,21 +487,25 @@ footer {
     margin-top: 50px;
 }
 
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 20px;
+/* Efeito de animação para o footer */
+footer.visible {
+    display: block; /* Torna o footer visível */
+    opacity: 1; /* Torna o footer totalmente visível */
 }
 
+/* Estilo para o logo do footer */
 .footer-logo {
-    font-size: 16px;
+    font-size: 24px;
     color: var(--gray-light); /* Cinza claro */
+    font-family: 'Dancing Script', cursive; /* Aplica a fonte 'Dancing Script' */
+    transition: transform 0.3s ease-in-out; /* Suaviza a animação */
 }
 
+.footer-logo:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do logo quando o mouse passa sobre ele */
+}
+
+/* Estilo para os links do footer */
 .footer-links a {
     color: var(--gray-light); /* Cinza claro */
     margin: 0 15px;
@@ -513,6 +516,7 @@ footer {
     color: var(--purple-soft); /* Roxo suave ao passar o mouse */
 }
 
+/* Estilo para os ícones sociais */
 .footer-social a {
     margin: 0 10px;
     color: var(--gray-light); /* Cinza claro */
@@ -534,11 +538,6 @@ footer {
         margin: 10px 0;
     }
 }
-/* Suaviza a rolagem */
-html {
-    scroll-behavior: smooth;
-}
-
 /* Seção de contato */
 .contact-section {
     display: block; /* Seção visível por padrão */
